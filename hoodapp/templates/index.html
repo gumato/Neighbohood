@@ -1,1 +1,14 @@
-<h1> Welcome to Neighborhood</h1>
+{% extends 'base.html' %}
+{% block content %}
+{{ block.super}}
+{% load bootstrap3 %}
+<div class="container-fluid"style="background-attachment: fixed;background-image: url('https://images.unsplash.com/photo-1540507135371-d109d3d58ec5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');height: 700px;background-repeat: no-repeat;background-size: cover;">
+    <div class="row">
+            <h1 style="margin-left:400px; color:cadetblue;">welcome to Neighborhood app</h1>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

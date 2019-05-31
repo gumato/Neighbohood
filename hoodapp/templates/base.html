@@ -6,22 +6,31 @@
   <meta charset="utf-8">
 
   {% if title %}
-  <title>Neighborhood- {{title}}</title>
+  <title>Neighborhood - {{title}}</title>
   {% else %}
     <title> Neighborhood </title>
   {% endif %}
 
   {% block styles %}
-    {% bootstrap_css %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% endblock %}
 
 </head>
-<body>
+ <body>
     {% include "navbar.html" %}
-    {% block content %}
+    <!-- <br> -->
+    <!-- <div class="row"style=background-color:maroon;height:80px;text-align:right;>
+      <div class=col-md-4>
+          
+    <a class="navbar-brand" href="">Welcome to the Amazing Awwards</a>
+  </div>
+  </div> -->
+    {% block content %} <h1 class='text-center'></h1> {%endblock%}
+
     {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      {% bootstrap_javascript %}
-    {%endblock%}
+    {% endblock %}
 </body>
 </html>
