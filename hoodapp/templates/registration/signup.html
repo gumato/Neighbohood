@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container-fluid" style='background-color:white;'>
+<div class="container-fluid"style="background-image: url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');height:700px;background-size:cover;background-repeat:no-repeat;">
     <!-- empty div -->
     <div class='row' >
         <div class='col-md-2 col-xs-2 col-sm-2'>
@@ -14,7 +14,7 @@
        </div>
        <div class='col-md-4 col-xs-4 col-sm-4'>
        <div class="panel-body card register-card">
-           <h2 class='header'>Instagram<h2>
+           <h2 class='header'>Awwards<h2>
            <h5 style='color:blue;text-align:center;font-size:12px;'><strong>Sign up</strong></h5>
          <form  action="/accounts/register/" method="post">
                {%csrf_token%}
@@ -30,7 +30,7 @@
                {% endfor %}
                
              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up" style='text-align:center;font-family:Roboto, sans-serif;font-size:14px; width:100%;margin-top:20px;'>
-             <h5 style='color:blue;text-align:center;font-size:12px;padding-top:20px;'>By signing up, you agree to our <strong><a href='https://help.instagram.com/581066165581870'style='color:grey'>Terms</a></strong>, <strong><a href='https://help.instagram.com/519522125107875'style='color:grey'>Data Policy</strong> and <strong><a href='https://www.instagram.com/legal/cookies/' style='color:grey'>Cookies Policy</strong></a></h5>
+             <h5 style='color:blue;text-align:center;font-size:12px;padding-top:20px;'>By signing up, you agree to our <strong><a href='https://help.awwards.com/581066165581870'style='color:grey'>Terms</a></strong>, <strong><a href='https://help.awwards.com/519522125107875'style='color:grey'>Data Policy</strong> and <strong><a href='https://www.awwards.com/legal/cookies/' style='color:grey'>Cookies Policy</strong></a></h5>
            </form>
 
 
@@ -53,5 +53,6 @@
 
           
           
+   </div>
    </div>
    {%endblock%}

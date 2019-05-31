@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 import datetime as dt
+
 # Create your models here.
 class Neighborhood(models.Model):
     name = models.CharField(max_length = 30)
@@ -20,8 +21,7 @@ class Profile(models.Model):
     email = models.EmailField(max_length = 30)
     profile_pic = models.ImageField(upload_to='profile/')
     pub_date_created = models.DateTimeField(auto_now_add=True, null=True)
-    neighbourhood = models.ForeignKey('Neighbourhood', blank=True, null=True)
-
+    
     def __str__(self):
         return self.first_name
 
@@ -49,7 +49,8 @@ def save_user_profile(sender, instance, **kwargs):
 class Business(models.Model):
     business_name = models.CharField(max_length = 30)
     email = models.EmailField(max_length = 30)
-    # neighbourhood = models.ForeignKey(neighbourhood, related_name='businesses')
+    neighbourhood = models.ForeignKey(Neighborhood, blank=True, null=True)
+
 
 # @classmethod
 # def search_by_name(cls,search_term):
@@ -59,7 +60,5 @@ class Business(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(Profile, related_name='profile')
     post = models.CharField(max_length=30)
-    # neighbourhood = models.ForeignKey(Neighbourhood, related_name='posts')           
+    neighborhood = models.ForeignKey(Neighborhood, related_name='posts')           
 
-class neighbourhood(models.Model):
-    user = models
