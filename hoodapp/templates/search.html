@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ block.super}}
+{% load bootstrap4%}
+<div class="container">
+
+  <div class="row">
+    {% if searched_business %}
+    <h2>Found {{ searched_business |length }} of searched term {{message}}</h2>
+    {% else %}
+    <h2> Found 0 for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+    {% if searched_business %}
+    {% for t in searched_business %}
+      {{t.business_name}}
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

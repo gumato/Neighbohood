@@ -49,43 +49,29 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
-def post_new(request):
-
-    if request.method == 'POST':
-        form = UploadForm(request.POST,request.FILES)
-
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form =UploadForm()
-
-    return render(request,'post_new.html',locals())
-
 @login_required(login_url='/accounts/login/')
-def new_project(request):
+def new_hood(request):
     current_user = request.user
+    profile = Profile.objects.get(user=current_user)
     if request.method == 'POST':
-        form = UploadForm(request.POST, request.FILES)
+        form = HoodForm(request.POST, request.FILES)
         if form.is_valid():
-            project = form.save(commit=False)
-            project.editor = current_user
-            project.save()
+            hood = form.save(commit=False)
+            hood.user = current_user
+            hood.profile = profile
+            hood.save()
         return redirect('index')
-
     else:
-        form = UploadForm()
-    return render(request, 'new_project.html', {"form": form})
+        form = HoodForm()
+    return render(request, 'new_hood.html', {"form": form})
+def hoods(request,id):
+    date = dt.date.today()
+    post=Neighbourhood.objects.get(id=id)
+    business = Business.objects.filter(neighbourhood=post)
+    return render(request,'each_hood.html',{"post":post,"date":date, "business":business})
 
 
 
-def single_post(request,project_id):
-   
-    projects = Project.objects.get(id=project_id)
-    print(projects.image.url)
- 
-
-    return render(request,'single_project.html',{"projects":projects})
 
 
 def edit_profile(request):
