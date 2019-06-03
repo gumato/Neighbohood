@@ -68,7 +68,7 @@ class Post(models.Model):
 class Activities(models.Model):
     name = models.CharField(max_length=30, blank=True)
     user = models.ForeignKey(User,blank=True, on_delete=models.CASCADE)
-    neighbour = models.ForeignKey(NeighbourHood,blank=True, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey('Neighbourhood', blank=True, null=True)
     email = models.EmailField(max_length=70,blank=True)
     path = models.ImageField(upload_to = 'gallery/')    
 

@@ -88,15 +88,26 @@ def edit_profile(request):
         
     return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile})
 
-def activ(request):
+def activities(request):
     if request.method == 'POST':
-        form = ActivForm(request.POST,request.FILES)
+        form = ActivitiesForm(request.POST,request.FILES)
 
         if form.is_valid():
             form.save()
         return redirect('home',1)
     else:
-        form  = ActivForm()
-    return render(request,'activities.html',locals())    
+        form  = ActivitiesForm()
+    return render(request,'activities.html',locals())
+
+def business(request):
+    if request.method == 'POST':
+        form = BusinessForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            form.save()
+        return redirect('home',1)
+    else:
+        form  = BusinessForm()
+    return render(request,'business.html',locals())
 
 
