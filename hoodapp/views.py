@@ -13,7 +13,6 @@ from .models import *
 def index(request):
     date = dt.date.today()
     hoods = Neighbourhood.objects.all()
-    # rates = Rate.objects.all()
     return render(request,'index.html',{"date": date,"hoods":hoods})
 
 def Signup(request):
@@ -29,12 +28,13 @@ def Signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'Form':form})
-def profile(request):
-    date = dt.date.today()
-    current_user = request.user
-    profile = Profile.objects.get(user=current_user.id)
-    hoods = Neighbourhood.objects.all()
-    return render(request, 'profile/profile.html', {"date": date, "profile":profile,"hoods":hoods})   
+@login_required
+def profile(request,id_user):
+    user=User.objects.get(id=id_user)
+    
+    my_profile = Profile.objects.filter(user_id=request.user)[0:1]
+
+    return render(request,'profile.html',{'profile':my_profile})    
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -87,5 +87,16 @@ def edit_profile(request):
         signup_form =EditForm() 
         
     return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile})
+
+def activ(request):
+    if request.method == 'POST':
+        form = ActivForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            form.save()
+        return redirect('home',1)
+    else:
+        form  = ActivForm()
+    return render(request,'activities.html',locals())    
 
 

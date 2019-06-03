@@ -12,7 +12,7 @@ class SignupForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio','profile_pic']
+        fields =['user']
 
 class NeighbourhoodForm(forms.ModelForm):
     class Meta:
@@ -27,4 +27,9 @@ class PostForm(forms.ModelForm):
 class BusinessForm(forms.ModelForm):
     class Meta:
             model = Business
-            exclude = ['neighbourhood', 'profile']
+            exclude = ['']
+
+class ActivForm(forms.ModelForm):
+    class Meta:
+        model = Activities
+        exclude=['']
