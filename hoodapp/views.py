@@ -28,13 +28,13 @@ def Signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'Form':form})
-@login_required
-def profile(request,id_user):
-    user=User.objects.get(id=id_user)
-    
-    my_profile = Profile.objects.filter(user_id=request.user)[0:1]
 
-    return render(request,'profile.html',{'profile':my_profile})    
+def profile(request):
+        date = dt.date.today()
+        current_user = request.user
+        profile = Profile.objects.get(user=current_user.id)
+        hoods = Neighbourhood.objects.all()
+        return render(request, 'profile/profile.html', {"date": date, "profile":profile,"hoods":hoods}) 
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -70,10 +70,6 @@ def hoods(request,id):
     business = Business.objects.filter(neighbourhood=post)
     return render(request,'each_hood.html',{"post":post,"date":date, "business":business})
 
-
-
-
-
 def edit_profile(request):
     date = dt.date.today()
     current_user = request.user
@@ -88,26 +84,21 @@ def edit_profile(request):
         
     return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile})
 
-def activities(request):
+def post_business(request,id):
+    date = dt.date.today()
+    hood=Neighbourhood.objects.get(id=id)
+    business = Business.objects.filter(neighbourhood=hood)
+    form = BusinessForm()
     if request.method == 'POST':
-        form = ActivitiesForm(request.POST,request.FILES)
-
+        form = BusinessForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-        return redirect('home',1)
+            business = form.save(commit=False)
+            business.profile = request.user.profile
+            business.neighbourhood = hood
+            business.save()
+            return redirect('index')
     else:
-        form  = ActivitiesForm()
-    return render(request,'activities.html',locals())
-
-def business(request):
-    if request.method == 'POST':
-        form = BusinessForm(request.POST,request.FILES)
-
-        if form.is_valid():
-            form.save()
-        return redirect('home',1)
-    else:
-        form  = BusinessForm()
-    return render(request,'business.html',locals())
+        form = BusinessForm()
+        return render(request,'new_business.html',{"form":form,"business":business,"hood":hood,  "date":date})
 
 

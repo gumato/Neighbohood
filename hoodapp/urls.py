@@ -9,8 +9,9 @@ urlpatterns=[
     url(r'signup/', views.Signup, name="signup"),
     url(r'^profile/$',views.profile,name='profile'),
     url(r'^edit/profile/$',views.edit_profile,name='edit_profile'), 
-    url(r'business/',views.business, name='business'),
-    url(r'activities',views.activities,name='activities'),
+    url(r'^new/hood$', views.new_hood, name='new-hood'),
+    url(r'^hoods/(\d+)',views.hoods,name='hoods'),
+    url(r'^hoods/new/business/(\d+)$',views.post_business, name='new-business'),
     url(r'^new/hood$', views.new_hood, name='new-hood'),
 ]
 if settings.DEBUG:

@@ -29,7 +29,3 @@ class BusinessForm(forms.ModelForm):
             model = Business
             exclude = ['']
 
-class ActivForm(forms.ModelForm):
-    class Meta:
-        model = Activities
-        exclude=['']
