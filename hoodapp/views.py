@@ -68,7 +68,7 @@ def hoods(request,id):
     date = dt.date.today()
     post=Neighbourhood.objects.get(id=id)
     business = Business.objects.filter(neighbourhood=post)
-    return render(request,'each_hood.html',{"post":post,"date":date, "business":business})
+    return render(request,'hood.html',{"post":post,"date":date, "business":business})
 
 def edit_profile(request):
     date = dt.date.today()
