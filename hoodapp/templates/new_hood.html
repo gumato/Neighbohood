@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>New project</title>
+  <title>New hood</title>
   {{form.media}}
 
 {% block styles %}
@@ -32,7 +32,7 @@
                             <h2>Create Your Hood!!</h2>
                         </div>
                         <div class="card-body">
-                                <form  action="{%url 'new-hood'%}" method="post" enctype="multipart/form-data">
+                                <form  action="{%url 'new_neighbourhood'%}" method="post" enctype="multipart/form-data">
                                     {%csrf_token%}
                                     
                                     {% bootstrap_form form%}
@@ -55,6 +55,3 @@
    {% endblock %}
 </body>
 {% endblock%}
-
-
-</html>
