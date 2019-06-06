@@ -9,10 +9,11 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home
+           
           <span class="sr-only">(current)</span>
+       
         </a>
-        <a href="{% url 'new_neighbourhood' %}" class="btn btn-default">Create Hood</a>
-        <a href="{% url 'upload_business' %}" class="btn btn-default">Add Business</a>
+        
 
       </li>
       <form id="dm" class="form-inline" role="search" action="{% url 'search_results' %}">
@@ -20,8 +21,12 @@
           <input class="form-control mr-sm-2 nav-item" style='padding-right:10px;width:70%' type="text" placeholder="Search Business.." aria-label="Search" name="business">
 
         </form>
+        <li class="nav-item"style=text-color:white;>
+            <a href="{% url 'new_neighbourhood' %}" class="btn btn-default">Create Hood</a>
+            <a href="{% url 'upload_business' %}" class="btn btn-default">Add Business</a>
+        </li>
       <li class="nav-item">
-         
+   
         <a class="nav-link" href="/accounts/login/">Log in</a>
       </li>
       <li class="nav-item">

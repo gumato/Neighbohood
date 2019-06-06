@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 import datetime as dt
 from tinymce.models import HTMLField
-from pyuploadcare.dj.models import ImageField
+
 
 # Create your models here.
 class Neighbourhood(models.Model):
