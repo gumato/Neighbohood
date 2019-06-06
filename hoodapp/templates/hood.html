@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <div class="container-fluid">
+
+        
+        <div class="row">
+            {% for business in neighbourhood %}
+            <h2 class="text-center"> {{ neighbourhood.name }} </h2>
+            {% endfor %}
+
+            <div class="col-md-8" style="border-right-style: solid;">
+                <h2 class="text-center"> BUSINESS </h2>
+                <br>
+                <a href="{% url 'upload_business' %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >New Business</button></a>
+             
+                <hr>
+
+                {% for b in bs %}
+                
+            
+                <br>
+                <h4> {{ b.business_name }} </h4>
+                <p> {{ b.business_email }} </p>
+                <p> {{ b.neighbourhood.neighbourhood_name }} </p>
+
+                <hr style="border-bottom-style: solid; border-color:black;">
+  
+                {% endfor %}
+
+            </div>
+            <div class="col-md-4" style="border-left-style: solid; border-color:black;">
+                <h2 class="text-center"> POST </h2>
+                <br>
+                <a href="{% url 'add_post' %}"><button type="button" class="btn btn-secondary btn-lg btn-block" >New Post</button></a>
+
+                {% for post in posts %}
+                <p>{{ post.title }}</p>
+                <p>{{ post.content }}</p>
+                <small>{{post.neighbourhood.neighbourhood_name}}</small>
+                {% endfor %}
+            </div>
+
+        </div>
+        
+    </div>
+    
+</body>
+</html>
+{% endblock %}

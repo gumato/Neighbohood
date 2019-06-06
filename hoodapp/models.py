@@ -8,16 +8,33 @@ from tinymce.models import HTMLField
 # Create your models here.
 class Neighbourhood(models.Model):
     name = models.CharField(max_length = 30)
+    location = models.CharField(max_length =10)
     user_id = models.ForeignKey(User,blank=True, on_delete=models.CASCADE,related_name='user',null=True)
-    image = models.ImageField(upload_to='neighimage/', null=True)
-    # admin = models.ForeignKey(Profile, related_name='hoods', null=True)
+    image = models.ImageField(upload_to='hoodimage/', null=True)
+    admin = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    occupants = models.ForeignKey(User, null = True,related_name='business')
+
+    def save_neighbourhood(self):
+        self.save()
+
+    def delete_neigbourhood(self):
+        self.delete()
+
+    @classmethod
+    def find_neighbourhood_id(cls, id):
+        neighbourhood = Neighbourhood.objects.get(pk=id)
+        return neighbourhood
+
+    @classmethod
+    def get_profile_neighbourhood(cls, profile):
+        neighbourhood = Neighbourhood.objects.filter(profile__pk = profile)
+        return neighbourhood
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
     bio = models.CharField(max_length=100)
     profile_pic = models.ImageField(upload_to='profile/')
     email = models.EmailField(max_length = 30)
-    pub_date_created = models.DateTimeField(auto_now_add=True, null=True)
     neighbourhood = models.ForeignKey('Neighbourhood', blank=True, null=True)
      
 
@@ -49,6 +66,8 @@ class Business(models.Model):
     neighbourhood = models.ForeignKey(Neighbourhood, related_name='businesses')
     profile = models.ForeignKey(Profile, related_name='profiles')
 
+    def save_business(self):
+        self.save()
 
      
     @classmethod

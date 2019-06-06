@@ -17,7 +17,7 @@ class ProfileForm(forms.ModelForm):
 class NeighbourhoodForm(forms.ModelForm):
     class Meta:
         model = Neighbourhood
-        exclude = ['name']
+        exclude = ['admin,occupants']
 
 class PostForm(forms.ModelForm):
     class Meta:
