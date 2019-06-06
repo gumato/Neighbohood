@@ -11,6 +11,9 @@
         <a class="nav-link" href="#">Home
           <span class="sr-only">(current)</span>
         </a>
+        <a href="{% url 'new_neighbourhood' %}" class="btn btn-default">Create Hood</a>
+        <a href="{% url 'upload_business' %}" class="btn btn-default">Add Business</a>
+
       </li>
       <form id="dm" class="form-inline" role="search" action="{% url 'search_results' %}">
 
