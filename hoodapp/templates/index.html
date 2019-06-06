@@ -7,39 +7,7 @@
 <br> 
 <br>
 <br>
-    <div class="row">
-            <h1 style="margin-left:400px; color:cadetblue;font-size: 50px;font-style: initial;">Welcome to Neighbourhood Watch </h1>
-            <h6 style="text-align:center; color:rgb(253, 253, 253);">{{date|date:"l d-F Y"}}</h6>
-    </div>
-    <br>
-    <hr>  <a href="{% url 'new_neighbourhood'%}"><button class="btn btn-outline-light btn-sm">Create a Hood</button></a>  <hr>
-    <div class="row">
-        {% for new_hood in neighbourhood%}
-            <div class="col-md-4 col-lg-4 col-sm-6 ">
-                
-                    <div style="text-align:center; color:antiquewhite; background-color:rgb(10, 10, 10);" class="card-header">
-                        <h5>Name : {{new_neighbourhood.name}}</h5>
-                        <h5>Location :{{new_neighbourhood.location}}</h5>
-                    </div>
-                    {% if new_neighbourhood.image%}
-                    <div style="text-align:center; background-color:rgb(10, 10, 10);" class="card-image">
-                        
-                            <img class="img-responsive" src="{{new_neighbourhood.image.url}}" alt="image" height="200px" width="300px">
-                        
-                    </div>
-                    {% else %}
-                    
-                    {% endif %}
-                    <div style="background-color:rgb(10, 10, 10);" class="card-footer"> 
-                        <a href="{% url 'hood' %}"> <button class="btn btn-outline-primary btn-sm">Join &#8594;</button> </a>
-                        <h5> occupants :{{new_neighbourhood.occupants}}</h5>
-                    </div>
-                </div>
-                <br>
-            <br>
-            </div>
-            
-        {% endfor%}
+    
     <div class="row">
         <div>
         <!-- Card deck -->
