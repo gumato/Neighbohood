@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" id="project">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" id="formpro">
+        <div style="background-repeat: no-repeat; background-size: cover; background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');" class="card">
+        <div style="text-align: center; "  class="card-header">
+        
+            <h5>ADD BUSINESS</h5>
+        </div>
+            <div class="card-body">
+            <form action="{% url 'upload_business' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form uploadform %}
+                <input type="submit" class="btn btn-outline-success" value="Upload">
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}

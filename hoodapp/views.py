@@ -102,4 +102,32 @@ def post_business(request,id):
         form = BusinessForm()
         return render(request,'new_business.html',{"form":form,"business":business,"hood":hood,  "date":date})
 
+@login_required(login_url='/accounts/login')
+def upload_business(request):
+    if request.method == 'POST':
+        uploadform = BusinessForm(request.POST, request.FILES)
+        if uploadform.is_valid():
+            upload = uploadform.save(commit=False)
+            # upload.profile = request.user.profile
+            upload.save()
+            return redirect('index')
+    else:
+        uploadform = BusinessForm()
+    return render(request,'upload_business.html',locals())
+
+@login_required(login_url='/accounts/login')
+def add_post(request):
+
+    if request.method == 'POST':
+        postform = PostForm(request.POST, request.FILES)
+        if postform.is_valid():
+            post = postform.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('hood')
+    else:
+        postform = PostForm()
+    return render(request,'add_post.html',locals())
+
+
 
